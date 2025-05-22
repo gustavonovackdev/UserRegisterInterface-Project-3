@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Usuários</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://codepen.io/kjbrum/pen/myyZLq.scss">
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f5f5f5;
+        min-height: 100vh;
+        padding: 1rem;
+      }
+
+      form {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 320px;
+      }
+
+      form h1 {
+        font-size: 1.5em;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #2196f3;
+      }
+
+      .group {
+        position: relative;
+        margin-bottom: 30px;
+      }
+
+      input {
+        background: none;
+        color: #333;
+        font-size: 16px;
+        padding: 10px 10px 10px 5px;
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #999;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      label {
+        color: #999;
+        font-size: 16px;
+        font-weight: normal;
+        position: absolute;
+        pointer-events: none;
+        left: 5px;
+        top: 10px;
+        transition: 300ms ease all;
+      }
+
+      input:focus ~ label,
+      input:valid ~ label {
+        top: -14px;
+        font-size: 12px;
+        color: #2196f3;
+      }
+
+      .bar {
+        position: relative;
+        display: block;
+        width: 100%;
+      }
+
+      .bar:before {
+        content: "";
+        height: 2px;
+        width: 0;
+        bottom: 0px;
+        position: absolute;
+        background: #2196f3;
+        transition: 300ms ease all;
+        left: 0%;
+      }
+
+      input:focus ~ .bar:before {
+        width: 100%;
+      }
+
+      .btn-11 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        position: relative;
+        color: #3e9cb9;
+        overflow: hidden;
+        width: 100%;
+        height: 50px;
+        border: 1px solid #3e9cb9;
+        background: white;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 4px;
+        font-weight: bold;
+        z-index: 0;
+      }
+
+      .btn-icon {
+        color: #fff;
+        font-size: 18px;
+      }
+
+      .btn-11 span {
+        position: relative;
+        z-index: 2;
+      }
+
+      .btn-11:before,
+      .btn-11:after {
+        position: absolute;
+        top: 50%;
+            content: "";
+            width: 20px;
+        height: 20px;
+        background-color: #1c8bad;
+        border-radius: 50%;
+        z-index: 1;
+        transition: all 0.4s ease-in-out;
+        /*<i class="fa-solid fa-user-check"></i>*/
+      }
+
+      .btn-11:before {
+        left: -20px;
+        transform: translate(-50%, -50%);
+      }
+
+      .btn-11:after {
+        right: -20px;
+        transform: translate(50%, -50%);
+      }
+
+      .btn-11:hover {
+        color: #fff;
+
+      }
+
+      .btn-11:hover:before {
+        animation: criss-cross-left 1s forwards;
+      }
+
+      .btn-11:hover:after {
+        animation: criss-cross-right 1s forwards;
+      }
+
+      @keyframes criss-cross-left {
+        0% {
+          left: -20px;
+        }
+        50% {
+          left: 50%;
+          width: 20px;
+          height: 20px;
+        }
+        100% {
+          left: 50%;
+          width: 375px;
+          height: 375px;
+        }
+      }
+
+      @keyframes criss-cross-right {
+        0% {
+          right: -20px;
+        }
+        50% {
+          right: 50%;
+          width: 20px;
+          height: 20px;
+        }
+        100% {
+          right: 50%;
+          width: 375px;
+          height: 375px;
+        }
+      }
+
+      input::placeholder {
+        color: transparent;
+        transition: color 0.3s ease 0.2s;
+      }
+
+      input:focus::placeholder {
+        color: #aaa;
+        transition: color 0.3s ease 0.2s;
+      }
+
+      .btn-11.active {
+        background-color: #1c8bad;
+        color: white;
+        border-color: #1c8bad;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="meu-form" class="formulario" action="">
+      <h1>Cadastro de Usuários</h1>
+
+      <div class="group">
+        <input type="text" id="nome" required />
+        <span class="bar"></span>
+        <label for="nome">Nome Completo</label>
+      </div>
+
+      <div class="group">
+        <input type="email" id="email" required />
+        <span class="bar"></span>
+        <label for="email">Email</label>
+      </div>
+
+      <div class="group">
+        <input 
+        type="tel"
+        id="phone"
+        required
+        maxlength="15"
+        />
+        <span class="bar"></span>
+        <label for="phone">Telefone</label>
+      </div>
+
+      <div class="group">
+        <input type="text" id="user" required />
+        <span class="bar"></span>
+        <label for="user">Nome de Usuário</label>
+      </div>
+
+      <div class="group">
+        <input type="password" id="password" required />
+        <span class="bar"></span>
+        <label for="password">Senha</label>
+      </div>
+
+      <button type="submit" id="submit" class="btn-11">
+        <span class="btn-text">Enviar</span>
+        <i class="fa-solid fa-user-check btn-icon" style="display: none; z-index: 2;"></i>
+      </button>
+    </form>
+
+    <script>
+      function user(fullname, email, phonenumber, username, password) {
+        this.fullname = document.getElementById("nome").value;
+        this.email = document.getElementById("email").value;
+        this.phonenumber = document.getElementById("phone").value;
+        this.username = document.getElementById("user").value;
+        this.password = document.getElementById("password").value;
+      }
+
+      document
+        .getElementById("meu-form")
+        .addEventListener("submit", (event) => {
+            event.preventDefault();
+            const newUser = new user();
+            console.log(newUser);
+
+            const btn = document.getElementById('submit');
+            const text = btn.querySelector('.btn-text');
+            const icon = btn.querySelector('.btn-icon');
+
+            btn.disabled = true;
+            btn.classList.add('active');
+
+            setTimeout(() => {
+                text.style.display = 'none';
+                icon.style.display = 'inline';
+            }, 1000);
+
+            setTimeout(() => {
+                text.style.display = 'inline';
+                icon.style.display = 'none';
+                btn.disabled = false;
+                btn.classList.remove('active');
+                document.getElementById('meu-form').reset()
+            }, 2200);
+        });
+
+        document.getElementById('phone').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+
+            // value = value.replace(/\D/g, '');
+
+            if (value.length > 11) value = value.slice(0, 11); // limita a 11 digitos
+            
+
+            // mascara no placeholder de (00) 00000-0000
+            if (value.length === 0) {
+                e.target.value = '';
+            } else if (value.length <= 2) {
+                e.target.value = value;
+            } else if (value.length <= 6) {
+                e.target.value = `(${value.slice(0,2)}) ${value.slice(2)}`;
+            } else {
+                e.target.value = `(${value.slice(0,2)}) ${value,slice(2,7)}-${value.slice(7)}`;
+            }
+        });
+
+        const phoneInput = document.getElementById('phone');
+        let placeholderTimeout;
+
+        phoneInput.addEventListener('focus', () => {
+            placeholderTimeout = setTimeout(() => {
+                phoneInput.setAttribute('placeholder', '(99) 99999-9999');
+            }, 300);
+        });
+
+        phoneInput.addEventListener('blur', () => {
+            clearTimeout(placeholderTimeout);
+            phoneInput.removeAttribute('placeholder');
+        });
+
+    </script>
+  </body>
+</html>
